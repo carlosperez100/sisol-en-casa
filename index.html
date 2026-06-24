@@ -237,6 +237,18 @@
   .calc-badge.mod{background:#FBEAD3;color:#8A6314;}
   .calc-warn{font-size:12.5px;font-weight:600;color:var(--sisol-red);background:#FBEAEA;border:1px solid #F0C9C9;border-radius:8px;padding:8px 12px;margin-top:12px;display:none;}
   .calc-warn.show{display:block;}
+
+  /* desplegables (details/summary) */
+  details.acc{border:1px solid var(--line);border-radius:10px;margin-bottom:10px;overflow:hidden;background:#fff;}
+  details.acc summary{cursor:pointer;padding:13px 16px;font-weight:700;font-family:'Manrope';color:var(--mml-blue);font-size:14px;list-style:none;display:flex;align-items:center;gap:10px;background:linear-gradient(180deg,#fff,#FBF8F1);}
+  details.acc summary::-webkit-details-marker{display:none;}
+  details.acc summary > span:first-child{flex:1;}
+  details.acc summary .accsum{font-weight:600;color:var(--muted);font-size:12.5px;font-variant-numeric:tabular-nums;white-space:nowrap;}
+  details.acc summary::after{content:"\25B8";color:var(--sisol-red);font-size:13px;transition:transform .2s;}
+  details.acc[open] summary::after{transform:rotate(90deg);}
+  details.acc summary:hover{background:#FBF6EC;}
+  details.acc .tbl-scroll{border-top:1px solid var(--line);}
+  details.acc table{min-width:460px;}
 </style>
 </head>
 <body>
@@ -372,6 +384,74 @@
       </div>
       <p class="src"><b>Fuente:</b> Producción SISOL 2025. Porcentajes de la Tabla N.° 4.</p>
     </div>
+
+    <!-- Produccion por IPRESS por corredor -->
+    <div class="tblblock">
+      <div class="tbl-cap"><div class="tnum">Tabla N.&#176; 16</div><div class="ttitle">Producci&#243;n 2025 por IPRESS, agrupada por corredor</div></div>
+      <div style="padding:14px 16px 6px;">
+        <details class="acc">
+          <summary><span>Lima Centro &middot; 9 IPRESS</span><span class="accsum">2,390,538 atenciones</span></summary>
+          <div class="tbl-scroll"><table>
+            <thead><tr><th>IPRESS</th><th class="r">Consulta</th><th class="r">T&#243;pico/Proc.</th><th class="r">Laboratorio</th><th class="r">Imagen</th><th class="r">Total</th></tr></thead><tbody>
+            <tr><td>H. Solidaridad Surquillo</td><td class="r">219,988</td><td class="r">223,530</td><td class="r">181,235</td><td class="r">79,250</td><td class="r">712,204</td></tr>
+            <tr><td>H. Solidaridad Camana</td><td class="r">226,774</td><td class="r">185,898</td><td class="r">168,827</td><td class="r">94,702</td><td class="r">687,406</td></tr>
+            <tr><td>H. Solidaridad Metro Uni</td><td class="r">70,848</td><td class="r">55,420</td><td class="r">47,841</td><td class="r">26,405</td><td class="r">214,557</td></tr>
+            <tr><td>H. Solidaridad Mirones</td><td class="r">62,630</td><td class="r">94,948</td><td class="r">32,009</td><td class="r">16,593</td><td class="r">211,309</td></tr>
+            <tr><td>H. Solidaridad Magdalena</td><td class="r">72,577</td><td class="r">71,026</td><td class="r">46,897</td><td class="r">18,555</td><td class="r">210,806</td></tr>
+            <tr><td>H. Solidaridad Lince</td><td class="r">50,847</td><td class="r">54,009</td><td class="r">33,533</td><td class="r">13,845</td><td class="r">154,146</td></tr>
+            <tr><td>H. Solidaridad La Victoria</td><td class="r">53,370</td><td class="r">37,923</td><td class="r">34,134</td><td class="r">16,285</td><td class="r">150,836</td></tr>
+            <tr><td>H. Solidaridad Flor De Amancaes</td><td class="r">11,555</td><td class="r">11,243</td><td class="r">10,239</td><td class="r">4,855</td><td class="r">38,991</td></tr>
+            <tr><td>Soli Express Miraflores</td><td class="r">3,545</td><td class="r">3,400</td><td class="r">2,201</td><td class="r">1,004</td><td class="r">10,283</td></tr>
+            <tr class="total"><td>Total Lima Centro</td><td class="r">772,134</td><td class="r">737,397</td><td class="r">556,916</td><td class="r">271,494</td><td class="r">2,390,538</td></tr>
+            </tbody></table></div>
+        </details>
+        <details class="acc">
+          <summary><span>Lima Norte &middot; 7 IPRESS</span><span class="accsum">1,573,909 atenciones</span></summary>
+          <div class="tbl-scroll"><table>
+            <thead><tr><th>IPRESS</th><th class="r">Consulta</th><th class="r">T&#243;pico/Proc.</th><th class="r">Laboratorio</th><th class="r">Imagen</th><th class="r">Total</th></tr></thead><tbody>
+            <tr><td>H. Solidaridad Comas</td><td class="r">229,094</td><td class="r">152,638</td><td class="r">154,030</td><td class="r">86,855</td><td class="r">675,604</td></tr>
+            <tr><td>H. Solidaridad Puente Piedra</td><td class="r">133,158</td><td class="r">120,801</td><td class="r">93,855</td><td class="r">43,824</td><td class="r">399,713</td></tr>
+            <tr><td>H. Solidaridad Los Olivos</td><td class="r">119,950</td><td class="r">75,790</td><td class="r">67,289</td><td class="r">41,463</td><td class="r">317,419</td></tr>
+            <tr><td>H. Solidaridad Carabayllo</td><td class="r">54,797</td><td class="r">35,046</td><td class="r">33,034</td><td class="r">14,058</td><td class="r">142,776</td></tr>
+            <tr><td>CM Las Violetas</td><td class="r">5,370</td><td class="r">14,118</td><td class="r">5,276</td><td class="r">2,727</td><td class="r">28,068</td></tr>
+            <tr><td>CM La Ensenada</td><td class="r">2,044</td><td class="r">2,170</td><td class="r">1,536</td><td class="r">370</td><td class="r">6,426</td></tr>
+            <tr><td>CM Sinchi Roca</td><td class="r">1,284</td><td class="r">1,768</td><td class="r">685</td><td class="r">152</td><td class="r">3,903</td></tr>
+            <tr class="total"><td>Total Lima Norte</td><td class="r">545,697</td><td class="r">402,331</td><td class="r">355,705</td><td class="r">189,449</td><td class="r">1,573,909</td></tr>
+            </tbody></table></div>
+        </details>
+        <details class="acc">
+          <summary><span>Lima Este &middot; 9 IPRESS</span><span class="accsum">1,283,439 atenciones</span></summary>
+          <div class="tbl-scroll"><table>
+            <thead><tr><th>IPRESS</th><th class="r">Consulta</th><th class="r">T&#243;pico/Proc.</th><th class="r">Laboratorio</th><th class="r">Imagen</th><th class="r">Total</th></tr></thead><tbody>
+            <tr><td>H. Solidaridad San Juan De Lurigancho</td><td class="r">326,331</td><td class="r">219,444</td><td class="r">197,939</td><td class="r">117,404</td><td class="r">901,413</td></tr>
+            <tr><td>H. Solidaridad Ate</td><td class="r">130,386</td><td class="r">84,456</td><td class="r">94,085</td><td class="r">43,491</td><td class="r">357,108</td></tr>
+            <tr><td>CM Juan Pablo Ii</td><td class="r">2,569</td><td class="r">5,354</td><td class="r">1,260</td><td class="r">0</td><td class="r">10,140</td></tr>
+            <tr><td>CM Señor De Los Milagros</td><td class="r">1,654</td><td class="r">3,754</td><td class="r">1,018</td><td class="r">0</td><td class="r">7,156</td></tr>
+            <tr><td>CM Hospital Del Niño</td><td class="r">124</td><td class="r">903</td><td class="r">572</td><td class="r">36</td><td class="r">2,569</td></tr>
+            <tr><td>H. Solidaridad Santa Eulalia</td><td class="r">869</td><td class="r">230</td><td class="r">1,139</td><td class="r">227</td><td class="r">2,487</td></tr>
+            <tr><td>H. Solidaridad Huaycan</td><td class="r">1,691</td><td class="r">203</td><td class="r">0</td><td class="r">0</td><td class="r">1,919</td></tr>
+            <tr><td>Campañas De Salud - Santa Eulalia</td><td class="r">432</td><td class="r">77</td><td class="r">94</td><td class="r">34</td><td class="r">637</td></tr>
+            <tr><td>CM Huaycan</td><td class="r">0</td><td class="r">10</td><td class="r">0</td><td class="r">0</td><td class="r">10</td></tr>
+            <tr class="total"><td>Total Lima Este</td><td class="r">464,056</td><td class="r">314,431</td><td class="r">296,107</td><td class="r">161,192</td><td class="r">1,283,439</td></tr>
+            </tbody></table></div>
+        </details>
+        <details class="acc">
+          <summary><span>Lima Sur &middot; 7 IPRESS</span><span class="accsum">1,089,110 atenciones</span></summary>
+          <div class="tbl-scroll"><table>
+            <thead><tr><th>IPRESS</th><th class="r">Consulta</th><th class="r">T&#243;pico/Proc.</th><th class="r">Laboratorio</th><th class="r">Imagen</th><th class="r">Total</th></tr></thead><tbody>
+            <tr><td>H. Solidaridad Villa El Salvador</td><td class="r">204,393</td><td class="r">165,126</td><td class="r">127,241</td><td class="r">64,807</td><td class="r">580,999</td></tr>
+            <tr><td>H. Solidaridad Chorrillos</td><td class="r">85,837</td><td class="r">81,950</td><td class="r">50,767</td><td class="r">20,857</td><td class="r">242,905</td></tr>
+            <tr><td>H. Solidaridad Villa Maria Del Triunfo</td><td class="r">62,568</td><td class="r">56,356</td><td class="r">36,429</td><td class="r">21,169</td><td class="r">180,081</td></tr>
+            <tr><td>H. Solidaridad Punta Hermosa</td><td class="r">24,605</td><td class="r">15,016</td><td class="r">15,906</td><td class="r">8,725</td><td class="r">67,014</td></tr>
+            <tr><td>CM El Nazareno</td><td class="r">5,070</td><td class="r">3,079</td><td class="r">5,225</td><td class="r">315</td><td class="r">13,770</td></tr>
+            <tr><td>CM Villa Limatambo</td><td class="r">1,628</td><td class="r">939</td><td class="r">1,415</td><td class="r">188</td><td class="r">4,232</td></tr>
+            <tr><td>Campañas De Salud - Mala</td><td class="r">91</td><td class="r">10</td><td class="r">0</td><td class="r">0</td><td class="r">109</td></tr>
+            <tr class="total"><td>Total Lima Sur</td><td class="r">384,192</td><td class="r">322,476</td><td class="r">236,983</td><td class="r">116,061</td><td class="r">1,089,110</td></tr>
+            </tbody></table></div>
+        </details>
+      </div>
+      <p class="src"><b>Fuente:</b> Producci&#243;n SISOL 2025 (<code>sisol_produccion_2025</code>); agrupaci&#243;n por corredor seg&#250;n el Registro de IPRESS por corredor (Gerencia de Servicios de Salud SISOL). 32 IPRESS de Lima con producci&#243;n registrada en 2025.</p>
+    </div>
   </div>
 </section>
 
@@ -492,6 +572,77 @@
         </table>
       </div>
       <p class="src"><b>Fuente:</b> SISOL — tarifa base del Tarifario (vig. 11.05.2026) + recargo solidario; mercado — base de producción, tabla <code>tarifario_mercado</code> (sector Privado / EsSalud) + recargo de visita domiciliaria privada (S/ 80&ndash;150). Precio de mercado a domicilio = precio de establecimiento + recargo de visita.</p>
+    </div>
+
+    <!-- Tarifario desplegable por categoria -->
+    <div class="tblblock">
+      <div class="tbl-cap"><div class="tnum">Tabla N.&#176; 17</div><div class="ttitle">Detalle del tarifario SISOL por categor&#237;a (desplegable)</div></div>
+      <div style="padding:14px 16px 6px;">
+        <details class="acc">
+          <summary><span>Consulta médica &middot; 3,111 &#237;tems</span><span class="accsum">S/ 1 &ndash; 200 &middot; mediana S/ 27.5</span></summary>
+          <div class="tbl-scroll"><table>
+            <thead><tr><th>Especialidad</th><th class="r">N.&#176; &#237;tems</th><th class="r">Mediana (S/)</th><th class="r">M&#237;n (S/)</th><th class="r">M&#225;x (S/)</th></tr></thead><tbody>
+            <tr><td>OFTALMOLOGIA</td><td class="r">172</td><td class="r">37.5</td><td class="r">14</td><td class="r">87</td></tr>
+            <tr><td>NUTRICION</td><td class="r">137</td><td class="r">23</td><td class="r">5</td><td class="r">41</td></tr>
+            <tr><td>MEDICINA GENERAL</td><td class="r">134</td><td class="r">21</td><td class="r">1</td><td class="r">48</td></tr>
+            <tr><td>ODONTOLOGIA</td><td class="r">132</td><td class="r">21</td><td class="r">5</td><td class="r">83</td></tr>
+            <tr><td>UNIDAD DE TRATAMIENTO DE LA INFERTILIDAD</td><td class="r">120</td><td class="r">28</td><td class="r">19.5</td><td class="r">55</td></tr>
+            <tr><td>CARDIOLOGIA</td><td class="r">93</td><td class="r">30</td><td class="r">14</td><td class="r">90</td></tr>
+            <tr><td>GINECOLOGIA</td><td class="r">75</td><td class="r">29</td><td class="r">14</td><td class="r">48</td></tr>
+            <tr><td>PSIQUIATRIA</td><td class="r">75</td><td class="r">35</td><td class="r">20</td><td class="r">51</td></tr>
+            <tr><td>DERMATOLOGIA</td><td class="r">74</td><td class="r">29</td><td class="r">13</td><td class="r">48</td></tr>
+            <tr><td>PEDIATRIA</td><td class="r">74</td><td class="r">29</td><td class="r">10</td><td class="r">48</td></tr>
+            <tr><td>OTORRINOLARINGOLOGIA</td><td class="r">73</td><td class="r">29</td><td class="r">11</td><td class="r">48</td></tr>
+            <tr><td>UROLOGIA</td><td class="r">73</td><td class="r">30</td><td class="r">13.5</td><td class="r">140</td></tr>
+            </tbody></table></div>
+        </details>
+        <details class="acc">
+          <summary><span>Tópico / procedimientos &middot; 78,297 &#237;tems</span><span class="accsum">S/ 1 &ndash; 7203.5 &middot; mediana S/ 109</span></summary>
+          <div class="tbl-scroll"><table>
+            <thead><tr><th>Especialidad</th><th class="r">N.&#176; &#237;tems</th><th class="r">Mediana (S/)</th><th class="r">M&#237;n (S/)</th><th class="r">M&#225;x (S/)</th></tr></thead><tbody>
+            <tr><td>ODONTOLOGIA</td><td class="r">13,365</td><td class="r">123.5</td><td class="r">5</td><td class="r">3938</td></tr>
+            <tr><td>CIRUGIA GENERAL</td><td class="r">5,563</td><td class="r">190.5</td><td class="r">6</td><td class="r">5000</td></tr>
+            <tr><td>TRAUMATOLOGIA</td><td class="r">5,158</td><td class="r">123.5</td><td class="r">7</td><td class="r">5307.5</td></tr>
+            <tr><td>DERMATOLOGIA</td><td class="r">4,451</td><td class="r">205</td><td class="r">16</td><td class="r">1921</td></tr>
+            <tr><td>CIRUGIA DE CABEZA Y CUELLO</td><td class="r">3,547</td><td class="r">162</td><td class="r">12</td><td class="r">3159.5</td></tr>
+            <tr><td>CIRUGIA PEDIATRICA</td><td class="r">3,249</td><td class="r">61</td><td class="r">12</td><td class="r">1588</td></tr>
+            <tr><td>OFTALMOLOGIA</td><td class="r">2,915</td><td class="r">94</td><td class="r">6</td><td class="r">7203.5</td></tr>
+            <tr><td>GINECOLOGIA</td><td class="r">2,847</td><td class="r">84</td><td class="r">6</td><td class="r">4948</td></tr>
+            <tr><td>CIRUGIA PLASTICA, ESTETICA Y REPARADORA</td><td class="r">2,806</td><td class="r">229</td><td class="r">12</td><td class="r">6508</td></tr>
+            <tr><td>ANATOMIA PATOLOGICA</td><td class="r">2,590</td><td class="r">67</td><td class="r">10.5</td><td class="r">751</td></tr>
+            <tr><td>OTORRINOLARINGOLOGIA</td><td class="r">2,522</td><td class="r">75.5</td><td class="r">11</td><td class="r">4648</td></tr>
+            <tr><td>MEDICINA NUCLEAR</td><td class="r">2,409</td><td class="r">301</td><td class="r">12</td><td class="r">877</td></tr>
+            </tbody></table></div>
+        </details>
+        <details class="acc">
+          <summary><span>Laboratorio &middot; 25,943 &#237;tems</span><span class="accsum">S/ 3.5 &ndash; 2817.7 &middot; mediana S/ 63.5</span></summary>
+          <div class="tbl-scroll"><table>
+            <thead><tr><th>Especialidad</th><th class="r">N.&#176; &#237;tems</th><th class="r">Mediana (S/)</th><th class="r">M&#237;n (S/)</th><th class="r">M&#225;x (S/)</th></tr></thead><tbody>
+            <tr><td>LABORATORIO CLINICO</td><td class="r">18,084</td><td class="r">49</td><td class="r">3.5</td><td class="r">2817.7</td></tr>
+            <tr><td>ANATOMIA PATOLOGICA</td><td class="r">7,854</td><td class="r">87</td><td class="r">9</td><td class="r">412.5</td></tr>
+            <tr><td>OBSTETRICIA</td><td class="r">5</td><td class="r">13</td><td class="r">12</td><td class="r">13</td></tr>
+            </tbody></table></div>
+        </details>
+        <details class="acc">
+          <summary><span>Ayuda al diagnóstico &middot; 15,644 &#237;tems</span><span class="accsum">S/ 17 &ndash; 1314 &middot; mediana S/ 110</span></summary>
+          <div class="tbl-scroll"><table>
+            <thead><tr><th>Especialidad</th><th class="r">N.&#176; &#237;tems</th><th class="r">Mediana (S/)</th><th class="r">M&#237;n (S/)</th><th class="r">M&#225;x (S/)</th></tr></thead><tbody>
+            <tr><td>RADIOLOGIA</td><td class="r">5,653</td><td class="r">61</td><td class="r">22</td><td class="r">1115</td></tr>
+            <tr><td>TOMOGRAFIA ESPIRAL MULTICORTE</td><td class="r">3,352</td><td class="r">327.5</td><td class="r">50</td><td class="r">1314</td></tr>
+            <tr><td>RESONANCIA MAGNETICA</td><td class="r">2,956</td><td class="r">531.5</td><td class="r">204</td><td class="r">1314</td></tr>
+            <tr><td>ECOGRAFIA</td><td class="r">1,968</td><td class="r">52.5</td><td class="r">22</td><td class="r">280</td></tr>
+            <tr><td>UROLOGIA</td><td class="r">529</td><td class="r">43</td><td class="r">17</td><td class="r">160</td></tr>
+            <tr><td>GINECOLOGIA</td><td class="r">406</td><td class="r">96</td><td class="r">19</td><td class="r">280</td></tr>
+            <tr><td>MASTOLOGIA</td><td class="r">236</td><td class="r">101</td><td class="r">38</td><td class="r">217</td></tr>
+            <tr><td>DENSITOMETRIA OSEA</td><td class="r">203</td><td class="r">97</td><td class="r">65</td><td class="r">133</td></tr>
+            <tr><td>CARDIOLOGIA</td><td class="r">136</td><td class="r">147.5</td><td class="r">82</td><td class="r">280</td></tr>
+            <tr><td>MAMOGRAFIA</td><td class="r">103</td><td class="r">99.5</td><td class="r">45.5</td><td class="r">961</td></tr>
+            <tr><td>CIRUGIA CARDIOVASCULAR</td><td class="r">94</td><td class="r">147.5</td><td class="r">118</td><td class="r">301</td></tr>
+            <tr><td>CIRUGIA ONCOLOGICA</td><td class="r">7</td><td class="r">54</td><td class="r">54</td><td class="r">69.5</td></tr>
+            </tbody></table></div>
+        </details>
+      </div>
+      <p class="src"><b>Fuente:</b> Tarifario SISOL, vigencia 11.05.2026 (<code>sisol_tarifario</code>, 127,718 registros). Mediana de precio por especialidad; se muestran las principales especialidades por n&#250;mero de &#237;tems.</p>
     </div>
   </div>
 </section>
