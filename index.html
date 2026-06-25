@@ -652,13 +652,18 @@
   <div class="wrap">
     <span class="sec-tag blue">Calculadora interactiva</span>
     <h2 class="sec-title">Simula tu propio escenario <span class="calc-badge of" id="calc-status">Valores oficiales</span></h2>
-    <p class="sec-intro">Mueve los controles para cambiar el <strong>número de profesionales</strong>, el <strong>sueldo de cada profesional</strong> y el <strong>volumen de demanda</strong>. Todo se recalcula en vivo. Los valores precargados son los oficiales del proyecto (datos embebidos del Tarifario y la Producción SISOL).</p>
+    <p class="sec-intro">Mueve los controles para cambiar el <strong>número de motos que cede la Municipalidad</strong>, el <strong>número de profesionales</strong> por línea, el <strong>sueldo de cada profesional</strong> y el <strong>volumen de demanda</strong>. La suma de unidades se <strong>restringe al total de motos disponibles</strong>. Todo se recalcula en vivo; los valores precargados son los oficiales del proyecto.</p>
 
     <div class="calc-wrap">
       <!-- PANEL DE CONTROLES -->
       <div class="calc-panel">
         <h3>Parámetros</h3>
-        <p class="hint">Cada unidad = 1 moto + 1 piloto + 1 profesional. El n.° de unidades por línea es también el n.° de profesionales de esa especialidad.</p>
+        <p class="hint">Cada unidad = 1 moto + 1 piloto + 1 profesional. El n.° de unidades por línea es el n.° de profesionales de esa especialidad. La suma de unidades no puede superar las motos que cede la Municipalidad.</p>
+        <div class="calc-line glob" style="border-color:var(--gold);background:#FBF6EC;">
+          <div class="clh"><span class="cdot" style="background:var(--gold)"></span><span class="cname">Flota de la Municipalidad de Lima</span></div>
+          <div class="ctrl"><label>Motos que cede la Municipalidad <b id="lab_mml">30</b></label><input type="range" id="g_mml" min="1" max="50" step="1" value="30"></div>
+          <div id="motos-status" style="font-size:12.5px;font-weight:700;text-align:center;padding:7px;border-radius:8px;background:#E4EAF4;color:var(--mml-blue);"></div>
+        </div>
         <div id="calc-lines"></div>
 
         <div class="calc-line glob">
@@ -1001,11 +1006,15 @@
         {key:'lab',      nombre:'Laboratorio',             prof:'Téc. de laboratorio', motos:7,  sueldo:2500, base:63.5, equipo:6000,  color:'#3E7C59'},
         {key:'ayuda',    nombre:'Ayuda al diagnóstico',    prof:'Especialista',       motos:4,  sueldo:6500, base:110,  equipo:25000, color:'var(--gold)'}
       ],
-      visitasDia:6, recargo:35, sueldoPiloto:1800,
+      visitasDia:6, recargo:35, sueldoPiloto:1800, motosMML:30,
       dias:25, combustible:400, insumoVisita:8, comunicaciones:60, epp:100, overhead:0.12, sistema:20000, capacitacion:15000
     };
-    var MOTOS_MML = 30;
     var S = JSON.parse(JSON.stringify(OFICIAL));
+    function totalAssigned(){ return S.lineas.reduce(function(a,L){return a+L.motos;},0); }
+    function sumOthers(idx){ return S.lineas.reduce(function(a,L,k){return a+(k===idx?0:L.motos);},0); }
+    function fitToFleet(){ var g=0; while(totalAssigned()>S.motosMML && g++<2000){ var idx=0,mx=-1; S.lineas.forEach(function(L,k){if(L.motos>mx){mx=L.motos;idx=k;}}); if(S.lineas[idx].motos>0){S.lineas[idx].motos--;}else{break;} } }
+    function updateMaxes(){ var t=totalAssigned(); S.lineas.forEach(function(L,i){ var sl=document.getElementById('m_'+i); if(sl) sl.max=L.motos+(S.motosMML-t); }); }
+    function syncLines(){ updateMaxes(); S.lineas.forEach(function(L,i){ var sl=document.getElementById('m_'+i); if(sl) sl.value=L.motos; var lb=document.getElementById('mv_'+i); if(lb) lb.textContent=L.motos; }); }
 
     function money(n){ if(!isFinite(n)) return '—'; return 'S/ ' + Math.round(n).toLocaleString('es-PE'); }
     function money2(n){ return 'S/ ' + n.toLocaleString('es-PE',{minimumFractionDigits:2,maximumFractionDigits:2}); }
@@ -1037,6 +1046,7 @@
 
     function render(){
       var r=calc();
+      updateMaxes();
       document.getElementById('r_costo').textContent=money(r.costo);
       document.getElementById('r_ing').textContent=money(r.ingreso);
       document.getElementById('r_util').textContent=money(r.utilidad);
@@ -1076,10 +1086,17 @@
       if(isOficial()){ st.className='calc-badge of'; st.textContent='Valores oficiales'; }
       else { st.className='calc-badge mod'; st.textContent='Escenario modificado'; }
 
-      // aviso si excede las 30 motos cedidas por la MML
+      // estado de la flota: la asignación se restringe al total que cede la Municipalidad
+      var disp=S.motosMML-r.tMotos;
+      var ms=document.getElementById('motos-status');
+      if(ms){
+        ms.textContent='Unidades asignadas: '+r.tMotos+' de '+S.motosMML+'  ·  Disponibles: '+disp;
+        ms.style.background = disp===0 ? '#E4EAF4' : '#EAF5EE';
+      }
       var w=document.getElementById('calc-warn');
-      if(r.tMotos>MOTOS_MML){ w.className='calc-warn show'; w.textContent='⚠ '+r.tMotos+' unidades superan las '+MOTOS_MML+' motos cedidas por la MML en la fase piloto. Requeriría una ampliación del convenio.'; }
-      else if(r.tMotos===0){ w.className='calc-warn show'; w.textContent='⚠ Sin unidades asignadas: define al menos una línea de atención.'; }
+      w.style.color=''; w.style.background=''; w.style.borderColor='';
+      if(r.tMotos===0){ w.className='calc-warn show'; w.textContent='⚠ Sin unidades asignadas: define al menos una línea de atención.'; }
+      else if(disp>0){ w.className='calc-warn show'; w.style.color='#8A6314'; w.style.background='#FBEAD3'; w.style.borderColor='#E6D6AC'; w.textContent='ℹ Quedan '+disp+' moto(s) de la Municipalidad sin asignar (capacidad ociosa que podrías destinar a otra línea).'; }
       else { w.className='calc-warn'; w.textContent=''; }
     }
 
@@ -1096,8 +1113,11 @@
           '<input class="num-in" type="number" id="s_'+i+'" value="'+L.sueldo+'" step="100" min="0"></div>';
       cont.appendChild(d);
       d.querySelector('#m_'+i).addEventListener('input',function(e){
-        S.lineas[i].motos=parseInt(e.target.value,10)||0;
-        document.getElementById('mv_'+i).textContent=S.lineas[i].motos; render();
+        var v=parseInt(e.target.value,10)||0;
+        var maxForThis=S.motosMML - sumOthers(i);
+        if(v>maxForThis) v=maxForThis; if(v<0) v=0;
+        S.lineas[i].motos=v; e.target.value=v;
+        document.getElementById('mv_'+i).textContent=v; render();
       });
       d.querySelector('#s_'+i).addEventListener('input',function(e){
         S.lineas[i].sueldo=parseFloat(e.target.value)||0;
@@ -1117,14 +1137,20 @@
     document.getElementById('g_pil').addEventListener('input',function(e){
       S.sueldoPiloto=parseFloat(e.target.value)||0; render();
     });
+    document.getElementById('g_mml').addEventListener('input',function(e){
+      S.motosMML=parseInt(e.target.value,10)||1;
+      document.getElementById('lab_mml').textContent=S.motosMML;
+      fitToFleet(); syncLines(); render();
+    });
 
     // reset
     document.getElementById('calc-reset').addEventListener('click',function(){
       S=JSON.parse(JSON.stringify(OFICIAL));
+      document.getElementById('g_mml').value=S.motosMML; document.getElementById('lab_mml').textContent=S.motosMML;
       S.lineas.forEach(function(L,i){
-        document.getElementById('m_'+i).value=L.motos; document.getElementById('mv_'+i).textContent=L.motos;
         document.getElementById('s_'+i).value=L.sueldo; document.getElementById('sv_'+i).textContent=num(L.sueldo);
       });
+      syncLines();
       document.getElementById('g_vis').value=S.visitasDia; document.getElementById('lab_vis').textContent=S.visitasDia;
       document.getElementById('g_rec').value=S.recargo; document.getElementById('lab_rec').textContent='S/ '+S.recargo;
       document.getElementById('g_pil').value=S.sueldoPiloto;
